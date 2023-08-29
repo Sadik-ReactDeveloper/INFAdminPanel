@@ -96,6 +96,9 @@ const EditDate = lazy(() => import("./views/apps/trade/expdate/EditDate"));
 
 // user//
 const UsersList = lazy(() => import("./views/apps/users/UsersList"));
+const PaymentHistoryList = lazy(() =>
+  import("./views/apps/payment/PaymentHistoryList")
+);
 const AddUsers = lazy(() => import("./views/apps/users/AddUsers"));
 const EditUsers = lazy(() => import("./views/apps/users/EditUsers"));
 const ViewUsers = lazy(() => import("./views/apps/users/ViewUsers"));
@@ -108,9 +111,18 @@ const FnIndex = lazy(() => import("./views/apps/scripts/FnIndex"));
 const AddFnIndex = lazy(() => import("./views/apps/scripts/AddFnIndex"));
 const EditFnIndex = lazy(() => import("./views/apps/scripts/EditFnIndex"));
 
-const FnoOption = lazy(() => import("./views/apps/scripts/FnoOption"));
-const AddFnoOption = lazy(() => import("./views/apps/scripts/AddFnoOption"));
-const EditOption = lazy(() => import("./views/apps/scripts/EditOption"));
+const PlanList = lazy(() => import("./views/apps/plans/PlanList"));
+const AddPlan = lazy(() => import("./views/apps/plans/AddPlan"));
+const EditPlan = lazy(() => import("./views/apps/plans/EditPlan"));
+const EliteNetworkList = lazy(() =>
+  import("./views/apps/plans/network/EliteNetworkList")
+);
+
+// Apply
+const VisitorList = lazy(() => import("./views/apps/apply/VisitorList"));
+
+// const AddFnoIndex = lazy(() => import("./views/apps/trade/AddFnoIndex"));
+// const EditFnoIndex = lazy(() => import("./views/apps/trade/EditFnoIndex"));
 
 const CashEquity = lazy(() => import("./views/apps/scripts/CashEquity"));
 const AddCashEquity = lazy(() => import("./views/apps/scripts/AddCashEqutiy"));
@@ -506,6 +518,10 @@ class AppRouter extends React.Component {
               component={EditMemContent}
             />
             {/* user */}
+            <AppRoute
+              path="/app/payment/paymentHistoryList"
+              component={PaymentHistoryList}
+            />
             <AppRoute path="/app/users/usersList" component={UsersList} />
             <AppRoute path="/app/users/addUsers" component={AddUsers} />
             <AppRoute path="/app/users/editUsers/:id" component={EditUsers} />
@@ -564,14 +580,12 @@ class AppRouter extends React.Component {
               path="/app/scripts/editFnIndex/:id"
               component={EditFnIndex}
             />
-            <AppRoute path="/app/scripts/fnoOption" component={FnoOption} />
+            <AppRoute path="/app/plans/PlanList" component={PlanList} />
+            <AppRoute path="/app/plan/addPlan" component={AddPlan} />
+            <AppRoute path="/app/plans/editPlan/:id" component={EditPlan} />
             <AppRoute
-              path="/app/scripts/addfnoOption"
-              component={AddFnoOption}
-            />
-            <AppRoute
-              path="/app/scripts/editOption/:id"
-              component={EditOption}
+              path="/app/plans/EliteNetworkList"
+              component={EliteNetworkList}
             />
             <AppRoute path="/app/scripts/cashEquity" component={CashEquity} />
             <AppRoute
@@ -624,6 +638,10 @@ class AppRouter extends React.Component {
               component={EditFnoIndex}
             />
             <AppRoute path="/app/trade/addFnoIndex" component={AddFnoIndex} />
+            <AppRoute
+              path="/app/applylist/visitorList"
+              component={VisitorList}
+            />
             {/* <AppRoute
               path="/app/trade/bankNiftyList"
               component={BankNiftyList}

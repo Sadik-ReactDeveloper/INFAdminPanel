@@ -123,15 +123,15 @@ class FnIndex extends React.Component {
     ],
   };
 
-  componentDidMount() {
-    this.getFnoList();
-  }
-  getFnoList = () => {
-    axiosConfig.get(`/admin/getFnoScript`).then((response) => {
-      const rowData = response.data.data;
-      this.setState({ rowData });
-    });
-  };
+  // componentDidMount() {
+  //   this.getFnoList();
+  // }
+  // getFnoList = () => {
+  //   axiosConfig.get(`/admin/getFnoScript`).then((response) => {
+  //     const rowData = response.data.data;
+  //     this.setState({ rowData });
+  //   });
+  // };
 
   runthisfunction(id) {
     swal(

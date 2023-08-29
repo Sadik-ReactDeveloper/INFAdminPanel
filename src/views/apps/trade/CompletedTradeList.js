@@ -496,16 +496,16 @@ class CompletedTradeList extends React.Component {
     ],
   };
 
-  componentDidMount() {
-    this.getCompletedTradeList();
-  }
-  getCompletedTradeList = () => {
-    axiosConfig.get(`/admin/completedTrade`).then((response) => {
-      const rowData = response.data.data;
-      console.log(rowData);
-      this.setState({ rowData });
-    });
-  };
+  // componentDidMount() {
+  //   this.getCompletedTradeList();
+  // }
+  // getCompletedTradeList = () => {
+  //   axiosConfig.get(`/admin/completedTrade`).then((response) => {
+  //     const rowData = response.data.data;
+  //     console.log(rowData);
+  //     this.setState({ rowData });
+  //   });
+  // };
   // async runthisfunction(id) {
   //   console.log(id);
   //   await axiosConfig.get(`/admin/dlt_alltrade/${id}`).then(

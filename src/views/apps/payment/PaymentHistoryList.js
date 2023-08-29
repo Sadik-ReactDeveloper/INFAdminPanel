@@ -19,7 +19,7 @@ import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import "../../../assets/scss/pages/users.scss";
 import { Route } from "react-router-dom";
 import swal from "sweetalert";
-class FnoOptionList extends React.Component {
+class PlanList extends React.Component {
   state = {
     rowData: [],
     paginationPageSize: 20,
@@ -44,9 +44,45 @@ class FnoOptionList extends React.Component {
         // headerCheckboxSelection: true,
       },
       {
-        headerName: "Script Name",
-        field: "scriptName",
-        width: 400,
+        headerName: "Start Date",
+        field: "StartDate",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.scriptName}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "End Date",
+        field: "EndDate",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.scriptName}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Coverage Area",
+        field: "Coverage",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.scriptName}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Maximum",
+        field: "Maximum",
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -117,16 +153,16 @@ class FnoOptionList extends React.Component {
     ],
   };
 
-  componentDidMount() {
-    this.getOptionDataList();
-  }
+  //   componentDidMount() {
+  //     this.getOptionDataList();
+  //   }
 
-  getOptionDataList = () => {
-    axiosConfig.get(`/admin/getEquityScript`).then((response) => {
-      const rowData = response.data.data;
-      this.setState({ rowData });
-    });
-  };
+  //   getOptionDataList = () => {
+  //     axiosConfig.get(`/admin/getEquityScript`).then((response) => {
+  //       const rowData = response.data.data;
+  //       this.setState({ rowData });
+  //     });
+  //   };
   runthisfunction(id) {
     swal(
       `Do You Want To Delete Permanently`,
@@ -186,21 +222,21 @@ class FnoOptionList extends React.Component {
             <Row className="m-2">
               <Col>
                 <h1 sm="6" className="float-left">
-                  Plan List
+                  PaymentHistory List
                 </h1>
               </Col>
-              <Col className="pt-4">
+              {/* <Col className="pt-4">
                 <Route
                   render={({ history }) => (
                     <Button
                       className=" btn btn-success float-right"
-                      onClick={() => history.push("/app/scripts/addFnoOption")}
+                      onClick={() => history.push("/app/plan/addPlan")}
                     >
                       Add Plan
                     </Button>
                   )}
                 />
-              </Col>
+              </Col> */}
             </Row>
             <CardBody>
               {this.state.rowData === null ? null : (
@@ -298,4 +334,4 @@ class FnoOptionList extends React.Component {
     );
   }
 }
-export default FnoOptionList;
+export default PlanList;
