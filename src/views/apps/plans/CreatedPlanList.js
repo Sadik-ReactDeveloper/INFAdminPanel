@@ -10,19 +10,19 @@ import {
   DropdownMenu,
   DropdownItem,
   DropdownToggle,
+  Form,
+  Label,
 } from "reactstrap";
-import axiosConfig from "../../../../axiosConfig";
-import { ContextLayout } from "../../../../utility/context/Layout";
+import axiosConfig from "../../../axiosConfig";
+import { ContextLayout } from "../../../utility/context/Layout";
 import { AgGridReact } from "ag-grid-react";
-import { Eye, Edit, Trash2, ChevronDown } from "react-feather";
-import { history } from "../../../../history";
-import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-import "../../../../assets/scss/pages/users.scss";
+import { Edit, Trash2, ChevronDown } from "react-feather";
+import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
+import "../../../assets/scss/pages/users.scss";
 import { Route } from "react-router-dom";
 import swal from "sweetalert";
 import ReactHtmlParser from "react-html-parser";
-
-class TrupeeUniversity extends React.Component {
+class CreatedPlanList extends React.Component {
   state = {
     rowData: [],
     paginationPageSize: 20,
@@ -44,21 +44,21 @@ class TrupeeUniversity extends React.Component {
         filter: true,
       },
       {
-        headerName: "Title",
-        field: "title",
-        width: 200,
+        headerName: "Plan Name",
+        field: "planname",
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.title}</span>
+              <span>{params.data.planName}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Descripiton",
-        field: "desc",
-        width: 200,
+        headerName: "Description",
+        field: "description",
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -67,36 +67,11 @@ class TrupeeUniversity extends React.Component {
           );
         },
       },
-      {
-        headerName: "Upload Video",
-        field: "video_link",
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.video_link}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Date/Time",
-        field: "createdAt",
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.createdAt}</span>
-            </div>
-          );
-        },
-      },
 
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 200,
-        // pinned: window.innerWidth > 992 ? "right" : false,
+        width: 250,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
@@ -108,16 +83,14 @@ class TrupeeUniversity extends React.Component {
                     color="blue"
                     onClick={() =>
                       history.push(
-                        `/app/explore/Trupee/editTruUni/${params.data._id}`
+                        `/app/plans/editCreatedPlan/${params.data._id}`
                       )
                     }
                   />
                 )}
               />
-
               <Trash2
-                className="mr-50"
-                size="25px"
+                size={20}
                 color="red"
                 onClick={() => {
                   this.runthisfunction(params.data._id);
@@ -130,19 +103,15 @@ class TrupeeUniversity extends React.Component {
     ],
   };
   componentDidMount() {
-    this.truppeuniversity();
+    this.getOptionDataList();
   }
-  truppeuniversity = () => {
-    axiosConfig
-      .get(`/admin/get_Tuniversity`)
-      .then((response) => {
-        let rowData = response.data.data;
-        JSON.stringify(rowData);
-        this.setState({ rowData });
-      })
-      .catch((error) => {
-        console.log(error.response);
-      });
+
+  getOptionDataList = () => {
+    axiosConfig.get(`/user/infPlanList`).then((response) => {
+      //   console.log(response.data);
+      const rowData = response.data;
+      this.setState({ rowData });
+    });
   };
   runthisfunction(id) {
     swal(
@@ -160,8 +129,8 @@ class TrupeeUniversity extends React.Component {
         case "cancel":
           break;
         case "catch":
-          axiosConfig.get(`/admin/dlt_Tuniversity/${id}`).then((response) => {
-            this.truppeuniversity();
+          axiosConfig.delete(`/admin/dlt_infPlan/${id}`).then((response) => {
+            this.getOptionDataList();
           });
           break;
         default:
@@ -200,23 +169,45 @@ class TrupeeUniversity extends React.Component {
         <Col sm="12"></Col>
         <Col sm="12">
           <Card>
+            {/* <Form className="m-1" onSubmit={this.submitHandler}>
+              <Row>
+                <Col lg="6" md="6" sm="6" className="">
+                  <Label>Created Plan</Label>
+                  <Input
+                    required
+                    type="text"
+                    name="scriptName"
+                    placeholder="Plan Name"
+                    value={this.state.scriptName}
+                    onChange={this.changeHandler}
+                  ></Input>
+                </Col>
+                <Col lg="6" md="6" sm="6" className="mt-1">
+                  <Button.Ripple
+                    // color="primary"
+                    type="submit"
+                    className="mr-1 mb-1 btn btn-success float-right"
+                  >
+                    Create Plan
+                  </Button.Ripple>
+                </Col>
+              </Row>
+            </Form> */}
+            <Col sm="12"></Col>
             <Row className="m-2">
               <Col>
                 <h1 sm="6" className="float-left">
-                  Trupee University List
+                  Create Plan List
                 </h1>
               </Col>
-
-              <Col>
+              <Col className="">
                 <Route
                   render={({ history }) => (
                     <Button
                       className=" btn btn-success float-right"
-                      onClick={() =>
-                        history.push("/app/explore/Trupee/addTrupeeUniversity")
-                      }
+                      onClick={() => history.push("/app/plan/CreatePlan")}
                     >
-                      Add University
+                      Create Plan
                     </Button>
                   )}
                 />
@@ -232,8 +223,8 @@ class TrupeeUniversity extends React.Component {
                           {this.gridApi
                             ? this.state.currenPageSize
                             : "" * this.state.getPageSize -
-                              (this.state.getPageSize - 1)}{" "}
-                          -{" "}
+                              (this.state.getPageSize - 1)}
+                          -
                           {this.state.rowData.length -
                             this.state.currenPageSize * this.state.getPageSize >
                           0
@@ -318,4 +309,4 @@ class TrupeeUniversity extends React.Component {
     );
   }
 }
-export default TrupeeUniversity;
+export default CreatedPlanList;

@@ -90,9 +90,13 @@ class AnalyticsDashboard extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Col lg="12" md="12">
-          <SalesCard />
-        </Col>
+        <Row className="my-2">
+          <Col lg="12" md="12">
+            <h2>Hop Dashboard</h2>
+            {/* <SalesCard /> */}
+          </Col>
+        </Row>
+
         <Row className="match-height">
           <Col lg="4" md="12">
             <Card

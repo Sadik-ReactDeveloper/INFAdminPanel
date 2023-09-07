@@ -23,7 +23,7 @@ import { history } from "../../../history";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import "../../../assets/scss/pages/users.scss";
 import moment from "moment";
-class Report extends React.Component {
+class ViewClaims extends React.Component {
   state = {
     rowData: [],
     StartDate: "",
@@ -49,36 +49,34 @@ class Report extends React.Component {
       },
 
       {
-        headerName: "Type Of Script",
+        headerName: "Policy No",
         field: "script_type",
         width: 140,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex  align-items-center cursor-pointer">
-              <span>{params.data.script_type}</span>
+              {/* <span>{params.data.script_type}</span> */}
             </div>
           );
         },
       },
 
       {
-        headerName: "Script Name",
+        headerName: "Product Name",
         field: "scriptName",
         width: 140,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex  align-items-center cursor-pointer">
               <span>{params.data.fnoindex_scrpt_name?.scriptName}</span>
-              <span>{params.data.fnoequty_scrpt_name?.scriptName}</span>
-              <span>{params.data.cash_scrpt_name?.scriptName}</span>
             </div>
           );
         },
       },
 
       {
-        headerName: "Trade Type",
-        field: "type",
+        headerName: "Order No",
+        field: "Order",
         width: 140,
         cellRendererFramework: (params) => {
           return (
@@ -89,8 +87,8 @@ class Report extends React.Component {
         },
       },
       {
-        headerName: "Call Type",
-        field: "call_type",
+        headerName: "Order Date(yy-mm-dd)",
+        field: "Date",
         width: 140,
         cellRendererFramework: (params) => {
           return (
@@ -101,7 +99,7 @@ class Report extends React.Component {
         },
       },
       {
-        headerName: "Active Value",
+        headerName: "Insured(Full Name)",
         field: "active_value",
         width: 140,
         cellRendererFramework: (params) => {
@@ -113,7 +111,7 @@ class Report extends React.Component {
         },
       },
       {
-        headerName: "Active Value 2",
+        headerName: "Email",
         field: "active_value2",
         width: 140,
         cellRendererFramework: (params) => {
@@ -125,7 +123,7 @@ class Report extends React.Component {
         },
       },
       {
-        headerName: " SL",
+        headerName: " Age",
         field: "SL",
         width: 140,
         cellRendererFramework: (params) => {
@@ -137,7 +135,7 @@ class Report extends React.Component {
         },
       },
       {
-        headerName: "Trial",
+        headerName: "Industry",
         field: "trl",
         width: 140,
         cellRendererFramework: (params) => {
@@ -149,8 +147,8 @@ class Report extends React.Component {
         },
       },
       {
-        headerName: "T₹ 1",
-        field: "T1",
+        headerName: "Home Country",
+        field: "Country",
         width: 140,
         cellRendererFramework: (params) => {
           return (
@@ -160,278 +158,27 @@ class Report extends React.Component {
           );
         },
       },
-      {
-        headerName: "T₹ 2",
-        field: "T2",
-        width: 140,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.T2}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "T₹ 3",
-        field: "T3",
-        width: 140,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.T3}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "T₹ 4",
-        field: "T4",
-        width: 140,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.T4}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "T5",
-        field: "t5",
-        width: 140,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.t5}</span>
-            </div>
-          );
-        },
-      },
-
-      {
-        headerName: "Quantity",
-        field: "qty",
-        width: 140,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.qty}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Investment Amount",
-        field: "investment_amt",
-        width: 140,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.investment_amt}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Date",
-        field: "updatedAt",
-        width: 120,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{moment(params.data.updatedAt).format("ll")} </span>
-            </div>
-          );
-        },
-      },
-
-      {
-        headerName: "Number Of Lots",
-        field: "no_of_lots",
-        width: 140,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.no_of_lots}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "SL Type",
-        field: "sl_type",
-        filter: true,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return params.value === "true" ? (
-            <div className="badge badge-pill badge-success">
-              {params.data.sl_type}
-            </div>
-          ) : params.value === "false" ? (
-            <div className="badge badge-pill badge-warning">
-              {params.data.sl_type}
-            </div>
-          ) : null;
-        },
-      },
-      {
-        headerName: "Trial Type",
-        field: "trl_type",
-        filter: true,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return params.value === "true" ? (
-            <div className="badge badge-pill badge-success">
-              {params.data.trl_type}
-            </div>
-          ) : params.value === "false" ? (
-            <div className="badge badge-pill badge-warning">
-              {params.data.trl_type}
-            </div>
-          ) : null;
-        },
-      },
-      {
-        headerName: "FT1 Type",
-        field: "FT1_type",
-        filter: true,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return params.value === "true" ? (
-            <div className="badge badge-pill badge-success">
-              {params.data.FT1_type}
-            </div>
-          ) : params.value === "false" ? (
-            <div className="badge badge-pill badge-warning">
-              {params.data.FT1_type}
-            </div>
-          ) : null;
-        },
-      },
-      {
-        headerName: "FT2 Type",
-        field: "FT2_type",
-        filter: true,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return params.value === "true" ? (
-            <div className="badge badge-pill badge-success">
-              {params.data.FT2_type}
-            </div>
-          ) : params.value === "false" ? (
-            <div className="badge badge-pill badge-warning">
-              {params.data.FT2_type}
-            </div>
-          ) : null;
-        },
-      },
-      {
-        headerName: "FT3 Type",
-        field: "FT3_type",
-        filter: true,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return params.value === "true" ? (
-            <div className="badge badge-pill badge-success">
-              {params.data.FT3_type}
-            </div>
-          ) : params.value === "false" ? (
-            <div className="badge badge-pill badge-warning">
-              {params.data.FT3_type}
-            </div>
-          ) : null;
-        },
-      },
-      {
-        headerName: "T1 Type",
-        field: "t1_type",
-        filter: true,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return params.value === "true" ? (
-            <div className="badge badge-pill badge-success">
-              {params.data.t1_type}
-            </div>
-          ) : params.value === "false" ? (
-            <div className="badge badge-pill badge-warning">
-              {params.data.t1_type}
-            </div>
-          ) : null;
-        },
-      },
-      {
-        headerName: "T2 Type",
-        field: "t2_type",
-        filter: true,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return params.value === "true" ? (
-            <div className="badge badge-pill badge-success">
-              {params.data.t2_type}
-            </div>
-          ) : params.value === "false" ? (
-            <div className="badge badge-pill badge-warning">
-              {params.data.t2_type}
-            </div>
-          ) : null;
-        },
-      },
-      {
-        headerName: "T3 Type",
-        field: "t3_type",
-        filter: true,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return params.value === "true" ? (
-            <div className="badge badge-pill badge-success">
-              {params.data.t3_type}
-            </div>
-          ) : params.value === "false" ? (
-            <div className="badge badge-pill badge-warning">
-              {params.data.t3_type}
-            </div>
-          ) : null;
-        },
-      },
-      {
-        headerName: "T4 Type",
-        field: "t4_type",
-        filter: true,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return params.value === "true" ? (
-            <div className="badge badge-pill badge-success">
-              {params.data.t4_type}
-            </div>
-          ) : params.value === "false" ? (
-            <div className="badge badge-pill badge-warning">
-              {params.data.t4_type}
-            </div>
-          ) : null;
-        },
-      },
-      {
-        headerName: "status ",
-        field: "tradeStatus",
-        filter: true,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return params?.data?.FT1_type === "true" ||
-            params?.data?.FT2_type === "true" ||
-            params?.data?.FT3_type === "true" ||
-            params?.data?.t1_type === "true" ||
-            params?.data?.t2_type === "true" ||
-            params?.data?.t3_type === "true" ||
-            params?.data?.t4_type === "true" ||
-            params?.data?.trl_type === "true" ||
-            params?.data?.t5_type === "true" ? (
-            <div className="badge badge-pill badge-success">Completed</div>
-          ) : params?.data?.sl_type === "true" ? (
-            <div className="badge badge-pill badge-danger">Completed</div>
-          ) : null;
-        },
-      },
+      //   {
+      //     headerName: "status ",
+      //     field: "tradeStatus",
+      //     filter: true,
+      //     width: 150,
+      //     cellRendererFramework: (params) => {
+      //       return params?.data?.FT1_type === "true" ||
+      //         params?.data?.FT2_type === "true" ||
+      //         params?.data?.FT3_type === "true" ||
+      //         params?.data?.t1_type === "true" ||
+      //         params?.data?.t2_type === "true" ||
+      //         params?.data?.t3_type === "true" ||
+      //         params?.data?.t4_type === "true" ||
+      //         params?.data?.trl_type === "true" ||
+      //         params?.data?.t5_type === "true" ? (
+      //         <div className="badge badge-pill badge-success">Completed</div>
+      //       ) : params?.data?.sl_type === "true" ? (
+      //         <div className="badge badge-pill badge-danger">Completed</div>
+      //       ) : null;
+      //     },
+      //   },
       {
         headerName: "Actions",
         field: "sortorder",
@@ -561,9 +308,9 @@ class Report extends React.Component {
         <Col lg="12" md="12" sm="12">
           <Card>
             <h1 col-sm-6 className=" p-2">
-              Report Selection
+              ViewClaims
             </h1>
-            <Row>
+            {/* <Row>
               <Col lg="6" md="6" sm="6" className="mb-2 ml-2">
                 <Label>Reports:</Label>
                 <CustomInput
@@ -581,7 +328,7 @@ class Report extends React.Component {
                   <option value="Order Items Report">Order Items Report</option>
                 </CustomInput>
               </Col>
-            </Row>
+            </Row> */}
             <CardBody>
               {this.state.rowData === null ? null : (
                 <div className="ag-theme-material w-100 my-2 ag-grid-table">
@@ -678,4 +425,4 @@ class Report extends React.Component {
     );
   }
 }
-export default Report;
+export default ViewClaims;

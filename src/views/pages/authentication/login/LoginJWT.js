@@ -5,7 +5,6 @@ import Checkbox from "../../../../components/@vuexy/checkbox/CheckboxesVuexy";
 import { Mail, Lock, Check } from "react-feather";
 import { loginWithJWT } from "../../../../redux/actions/auth/loginActions";
 import { connect } from "react-redux";
-import axios from "axios";
 import { Route } from "react-router-dom";
 import swal from "sweetalert";
 import { Token } from "prismjs";

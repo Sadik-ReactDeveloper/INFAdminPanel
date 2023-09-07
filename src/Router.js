@@ -114,10 +114,35 @@ const EditFnIndex = lazy(() => import("./views/apps/scripts/EditFnIndex"));
 const PlanList = lazy(() => import("./views/apps/plans/PlanList"));
 const AddPlan = lazy(() => import("./views/apps/plans/AddPlan"));
 const EditPlan = lazy(() => import("./views/apps/plans/EditPlan"));
+
+// create Plan
+const CreatedPlanList = lazy(() =>
+  import("./views/apps/plans/CreatedPlanList")
+);
+const CreatePlan = lazy(() => import("./views/apps/plans/CreatePlan"));
+const EditCreatedPlan = lazy(() =>
+  import("./views/apps/plans/EditCreatedPlan")
+);
+
 const EliteNetworkList = lazy(() =>
   import("./views/apps/plans/network/EliteNetworkList")
 );
-
+// create Plan
+const PlanDetailList = lazy(() =>
+  import("./views/apps/PlanDetails/PlanDetailList")
+);
+const AddPlanDetail = lazy(() =>
+  import("./views/apps/PlanDetails/AddPlanDetail")
+);
+const EditPlanDetail = lazy(() =>
+  import("./views/apps/PlanDetails/EditPlanDetail")
+);
+// Claims
+const ViewClaims = lazy(() => import("./views/apps/claims/ViewClaims"));
+// Agent
+const AgentList = lazy(() => import("./views/apps/agent/AgentList"));
+const AddAgent = lazy(() => import("./views/apps/agent/AddAgent"));
+const EditAgent = lazy(() => import("./views/apps/agent/EditAgent"));
 // Apply
 const VisitorList = lazy(() => import("./views/apps/apply/VisitorList"));
 
@@ -217,13 +242,6 @@ const UserAppreciation = lazy(() =>
   import("./views/apps/showAppre/UserAppreciation")
 );
 // Explore//
-const TrupeeUniversity = lazy(() =>
-  import("./views/apps/explore/Trupee/TrupeeUniversity")
-);
-const AddTrupeeUniversity = lazy(() =>
-  import("./views/apps/explore/Trupee/AddTrupeeUniversity")
-);
-const EditTruUni = lazy(() => import("./views/apps/explore/Trupee/EditTruUni"));
 
 const StartUp = lazy(() => import("./views/apps/explore/Trupee/StartUp"));
 const AddStartUp = lazy(() => import("./views/apps/explore/Trupee/AddStartUp"));
@@ -580,6 +598,17 @@ class AppRouter extends React.Component {
               path="/app/scripts/editFnIndex/:id"
               component={EditFnIndex}
             />
+            {/* createPlan */}
+            <AppRoute path="/app/plan/CreatePlan" component={CreatePlan} />
+            <AppRoute
+              path="/app/plans/CreatedPlanList"
+              component={CreatedPlanList}
+            />
+            <AppRoute
+              path="/app/plans/editCreatedPlan/:id"
+              component={EditCreatedPlan}
+            />
+            {/* PlanList */}
             <AppRoute path="/app/plans/PlanList" component={PlanList} />
             <AppRoute path="/app/plan/addPlan" component={AddPlan} />
             <AppRoute path="/app/plans/editPlan/:id" component={EditPlan} />
@@ -587,6 +616,24 @@ class AppRouter extends React.Component {
               path="/app/plans/EliteNetworkList"
               component={EliteNetworkList}
             />
+            {/* BMIPlanList */}
+            <AppRoute
+              path="/app/plans/PlanDetailList"
+              component={PlanDetailList}
+            />
+            <AppRoute
+              path="/app/plans/AddPlanDetail"
+              component={AddPlanDetail}
+            />
+            <AppRoute
+              path="/app/plans/EditPlanDetail/:id"
+              component={EditPlanDetail}
+            />
+            <AppRoute path="/app/claims/ViewClaims" component={ViewClaims} />
+            {/* AgentList */}
+            <AppRoute path="/app/agent/AgentList" component={AgentList} />
+            <AppRoute path="/app/agent/AddAgent" component={AddAgent} />
+            <AppRoute path="/app/agent/EditAgent/:id" component={EditAgent} />
             <AppRoute path="/app/scripts/cashEquity" component={CashEquity} />
             <AppRoute
               path="/app/scripts/addCashEquity"
@@ -716,18 +763,6 @@ class AppRouter extends React.Component {
               component={UserNotification}
             />
             {/* Explore */}
-            <AppRoute
-              path="/app/explore/Trupee/trupeeUniversity"
-              component={TrupeeUniversity}
-            />
-            <AppRoute
-              path="/app/explore/Trupee/addTrupeeUniversity"
-              component={AddTrupeeUniversity}
-            />
-            <AppRoute
-              path="/app/explore/Trupee/editTruUni/:id"
-              component={EditTruUni}
-            />
             <AppRoute path="/app/explore/Trupee/startUp" component={StartUp} />
             <AppRoute
               path="/app/explore/Trupee/addStratUp"
