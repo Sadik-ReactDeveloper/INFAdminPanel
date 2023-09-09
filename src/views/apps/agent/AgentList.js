@@ -21,7 +21,7 @@ import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import "../../../assets/scss/pages/users.scss";
 import { Route } from "react-router-dom";
 import swal from "sweetalert";
-import ReactHtmlParser from "react-html-parser";
+// import ReactHtmlParser from "react-html-parser";
 class CreatedPlanList extends React.Component {
   state = {
     rowData: [],
@@ -50,7 +50,7 @@ class CreatedPlanList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.planName}</span>
+              <span>{params.data.agentName}</span>
             </div>
           );
         },
@@ -62,7 +62,7 @@ class CreatedPlanList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.planName}</span>
+              <span>{params.data.address}</span>
             </div>
           );
         },
@@ -74,7 +74,7 @@ class CreatedPlanList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.planName}</span>
+              <span>{params.data.city}</span>
             </div>
           );
         },
@@ -86,7 +86,7 @@ class CreatedPlanList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.planName}</span>
+              <span>{params.data.state}</span>
             </div>
           );
         },
@@ -98,7 +98,7 @@ class CreatedPlanList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.planName}</span>
+              <span>{params.data.zipcode}</span>
             </div>
           );
         },
@@ -110,7 +110,7 @@ class CreatedPlanList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.planName}</span>
+              <span>{params.data.phone}</span>
             </div>
           );
         },
@@ -122,7 +122,7 @@ class CreatedPlanList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.planName}</span>
+              <span>{params.data.email}</span>
             </div>
           );
         },
@@ -173,12 +173,12 @@ class CreatedPlanList extends React.Component {
     ],
   };
   componentDidMount() {
-    this.getOptionDataList();
+    this.getAgentList();
   }
 
-  getOptionDataList = () => {
-    axiosConfig.get(`/user/infPlanList`).then((response) => {
-      //   console.log(response.data);
+  getAgentList = () => {
+    axiosConfig.get(`/admin/agentList`).then((response) => {
+      console.log(response.data);
       const rowData = response.data;
       this.setState({ rowData });
     });
@@ -199,8 +199,8 @@ class CreatedPlanList extends React.Component {
         case "cancel":
           break;
         case "catch":
-          axiosConfig.delete(`/admin/dlt_infPlan/${id}`).then((response) => {
-            this.getOptionDataList();
+          axiosConfig.delete(`/admin/delAgent/${id}`).then((response) => {
+            this.getAgentList();
           });
           break;
         default:

@@ -225,7 +225,6 @@ export default class EditPlanDetail extends Component {
                     className="form-control"
                     type="file"
                     name="upload_pdf"
-                    // value={this.state.upload_pdf}
                     onChange={this.handleImage}
                   />
                 </Col>

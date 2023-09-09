@@ -202,9 +202,9 @@ class ViewClaims extends React.Component {
     ],
   };
 
-  componentDidMount() {
-    this.alltradeList();
-  }
+  // componentDidMount() {
+  //   this.alltradeList();
+  // }
   changeHandlerStartDate = (e) => {
     const startDate = moment(e.target.value).format("D-MM-YYYY");
     this.setState({ StartDate: startDate });
@@ -213,32 +213,32 @@ class ViewClaims extends React.Component {
     const endDate = moment(e.target.value).format("D-MM-YYYY");
     this.setState({ EndDate: endDate });
   };
-  alltradeList = () => {
-    axiosConfig.get(`/admin/tradelist`).then((response) => {
-      console.log(response.data.data);
-      const rowDataList = response.data.data;
-      const rowData = rowDataList.filter((value) => {
-        if (
-          value.FT1_type === "true" ||
-          value?.FT2_type === "true" ||
-          value?.FT3_type === "true" ||
-          value?.t1_type === "true" ||
-          value?.t2_type === "true" ||
-          value?.t3_type === "true" ||
-          value?.t4_type === "true" ||
-          value?.trl_type === "true" ||
-          value?.t5_type === "true" ||
-          value?.sl_type === "true"
-        ) {
-          return value;
-        }
-      });
-      console.log("NewList", rowData);
-      const list = response.data.data;
-      this.setState({ rowData });
-      this.setState({ list });
-    });
-  };
+  // alltradeList = () => {
+  //   axiosConfig.get(`/admin/tradelist`).then((response) => {
+  //     console.log(response.data.data);
+  //     const rowDataList = response.data.data;
+  //     const rowData = rowDataList.filter((value) => {
+  //       if (
+  //         value.FT1_type === "true" ||
+  //         value?.FT2_type === "true" ||
+  //         value?.FT3_type === "true" ||
+  //         value?.t1_type === "true" ||
+  //         value?.t2_type === "true" ||
+  //         value?.t3_type === "true" ||
+  //         value?.t4_type === "true" ||
+  //         value?.trl_type === "true" ||
+  //         value?.t5_type === "true" ||
+  //         value?.sl_type === "true"
+  //       ) {
+  //         return value;
+  //       }
+  //     });
+  //     console.log("NewList", rowData);
+  //     const list = response.data.data;
+  //     this.setState({ rowData });
+  //     this.setState({ list });
+  //   });
+  // };
   runthisfunction(id) {
     swal(
       `Do You Want To Delete Permanently`,

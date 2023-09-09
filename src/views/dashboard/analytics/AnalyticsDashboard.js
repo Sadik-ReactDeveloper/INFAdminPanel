@@ -25,66 +25,62 @@ class AnalyticsDashboard extends React.Component {
 
   componentDidMount() {
     // //end dealer //
-    axiosConfig
-      .get("/admin/totlactivetrade")
-      .then((response) => {
-        this.setState({ activetrade: response.data });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    axiosConfig
-      .get("/admin/ttlCompletetrade")
-      .then((response) => {
-        this.setState({ Completetrade: response.data });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    axiosConfig
-      .get("/admin/ttlfreeusers")
-      .then((response) => {
-        this.setState({ freeusers: response.data });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    axiosConfig
-      .get("/admin/today_profit_loss")
-      .then((response) => {
-        this.setState({ total: response.data });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    axiosConfig
-      .get("/admin/weekely_profit_loss")
-      .then((response) => {
-        this.setState({ weekly: response.data });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    axiosConfig
-      .get("/admin/monthly_profit_loss")
-      .then((response) => {
-        this.setState({ thirtydays: response.data });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    axiosConfig
-      .get("/admin/ttlActiveuser")
-      .then((response) => {
-        this.setState({ Activeuser: response.data });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // axiosConfig
+    //   .get("/admin/totlactivetrade")
+    //   .then((response) => {
+    //     this.setState({ activetrade: response.data });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    // axiosConfig
+    //   .get("/admin/ttlCompletetrade")
+    //   .then((response) => {
+    //     this.setState({ Completetrade: response.data });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    // axiosConfig
+    //   .get("/admin/ttlfreeusers")
+    //   .then((response) => {
+    //     this.setState({ freeusers: response.data });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    // axiosConfig
+    //   .get("/admin/today_profit_loss")
+    //   .then((response) => {
+    //     this.setState({ total: response.data });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    // axiosConfig
+    //   .get("/admin/weekely_profit_loss")
+    //   .then((response) => {
+    //     this.setState({ weekly: response.data });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    // axiosConfig
+    //   .get("/admin/monthly_profit_loss")
+    //   .then((response) => {
+    //     this.setState({ thirtydays: response.data });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    // axiosConfig
+    //   .get("/admin/ttlActiveuser")
+    //   .then((response) => {
+    //     this.setState({ Activeuser: response.data });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   }
 
   render() {
@@ -146,7 +142,7 @@ class AnalyticsDashboard extends React.Component {
               </CardText>
             </Card>
           </Col>
-          <Col lg="4" md="12">
+          {/* <Col lg="4" md="12">
             <Card
               className="bg-primary"
               body
@@ -160,8 +156,8 @@ class AnalyticsDashboard extends React.Component {
                 {this.state.Activeuser.data}
               </CardText>
             </Card>
-          </Col>
-          <Col lg="4" md="12">
+          </Col> */}
+          {/* <Col lg="4" md="12">
             <Card
               className="bg-primary"
               body
@@ -175,8 +171,8 @@ class AnalyticsDashboard extends React.Component {
                 {this.state.freeusers.data}
               </CardText>
             </Card>
-          </Col>
-          <Col lg="4" md="12">
+          </Col> */}
+          {/* <Col lg="4" md="12">
             <Card
               className="bg-primary"
               body
@@ -191,8 +187,8 @@ class AnalyticsDashboard extends React.Component {
                 {this.state.total.total_prft_loss}
               </CardText>
             </Card>
-          </Col>
-          <Col lg="4" md="12">
+          </Col> */}
+          {/* <Col lg="4" md="12">
             <Card
               className="bg-primary"
               body
@@ -207,8 +203,8 @@ class AnalyticsDashboard extends React.Component {
                 {this.state.weekly.weekly_profit_loss}
               </CardText>
             </Card>
-          </Col>
-          <Col lg="4" md="12">
+          </Col> */}
+          {/* <Col lg="4" md="12">
             <Card
               className="bg-primary"
               body
@@ -223,7 +219,7 @@ class AnalyticsDashboard extends React.Component {
                 {this.state.thirtydays.thirtydays_prft_loss}
               </CardText>
             </Card>
-          </Col>
+          </Col> */}
         </Row>
 
         <Row>

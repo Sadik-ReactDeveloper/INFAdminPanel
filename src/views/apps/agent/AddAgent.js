@@ -24,27 +24,19 @@ export default class AddAgent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      planname: {},
-      plannameList: [],
-      short_desc: "",
-      title: "",
-      long_desc: "",
-      highlight_desc: "",
-      upload_pdf: "",
-      selectedFile: null,
-      plan_max: "",
-      plan_deductible: "", //  number
-      coverageAmt: "", //  number
-      start_date: "", //  str
-      end_date: "",
-      total: "", //  number
+      agentName: "",
+      agentCode: "",
       email: "",
-      coverage_area: "", //  str
-      dob: "",
+      address: "",
+      city: "",
+      state: "",
+      zipcode: "",
+      phone: "",
+      image: "",
+      selectedFile: null,
     };
   }
   onEditorStateChange = (editorState) => {
-    // console.log(editorState);
     this.setState({
       editorState,
       short_desc: draftToHtml(convertToRaw(editorState.getCurrentContent())),
@@ -59,51 +51,45 @@ export default class AddAgent extends Component {
     console.log(e.target.files[0]);
     this.setState({ selectedFile: e.target.files[0] });
   };
-  changeHandler1 = (e) => {
-    console.log(e.target.value);
-    this.setState({ allPlan: e.target.value });
-  };
 
-  componentDidMount() {
-    this.getOptionDataList();
-  }
-
-  getOptionDataList = () => {
-    axiosConfig.get(`/user/infPlanList`).then((response) => {
-      console.log(response.data);
-      this.setState({ plannameList: response.data });
-    });
-  };
-  submitHandler = (e) => {
+  submitHandler = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("planname", this.state.allPlan);
-    formData.append("short_desc", this.state.short_desc);
-    formData.append("title", this.state.title);
-    // formData.append("long_desc", "long_desc");
-    // formData.append("highlight_desc", "highlight_desc");
-    formData.append("plan_max", this.state.plan_max);
-    formData.append("plan_deductible", Number(this.state.plan_deductible));
-    formData.append("coverageAmt", Number(this.state.coverageAmt));
-    formData.append("start_date", this.state.start_date);
-    formData.append("end_date", this.state.end_date);
-    formData.append("total", Number(this.state.total));
+    formData.append("agentName", this.state.agentName);
+    formData.append("agentCode", this.state.agentCode);
     formData.append("email", this.state.email);
-    formData.append("coverage_area", this.state.coverage_area);
-    formData.append("dob", this.state.dob);
+    formData.append("address", this.state.address);
+    formData.append("city", this.state.city);
+    formData.append("state", this.state.state);
+    formData.append("zipcode", this.state.zipcode);
+    formData.append("phone", this.state.phone);
 
     if (this.state.selectedFile != null) {
-      formData.append("upload_pdf", this.state.selectedFile);
+      formData.append("image", this.state.selectedFile);
     }
-    axiosConfig
-      .post("/user/createBmiPlan", formData)
-      .then((response) => {
-        console.log(response.data);
-        swal("Success!", "Submitted SuccessFull!", "success");
-      })
-      .catch((error) => {
-        console.log(error);
+    try {
+      const response = await axiosConfig.post(
+        "/admin/agentRegistration",
+        formData
+      );
+      console.log(response.data);
+      this.setState({
+        agentName: "",
+        agentCode: "",
+        email: "",
+        address: "",
+        city: "",
+        state: "",
+        zipcode: "",
+        phone: "",
+        image: "",
       });
+      swal("Success!", "Submitted SuccessFull!", "success");
+      // .then((response) => {
+      //   console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
   render() {
     return (
@@ -149,69 +135,64 @@ export default class AddAgent extends Component {
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Agent Name</Label>
                   <Input
-                    required
                     type="text"
-                    name="title"
+                    name="agentName"
                     placeholder="AgentName"
-                    value={this.state.title}
+                    value={this.state.agentName}
+                    onChange={this.changeHandler}
+                  ></Input>
+                </Col>
+                <Col lg="6" md="6" sm="6" className="mb-2">
+                  <Label>Agent Code</Label>
+                  <Input
+                    type="number"
+                    name="agentCode"
+                    placeholder="AgentCode"
+                    value={this.state.agentCode}
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Address</Label>
                   <Input
-                    required
                     type="text"
-                    name="Address"
-                    placeholder="Address"
-                    value={this.state.Address}
+                    name="address"
+                    placeholder="address"
+                    value={this.state.address}
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>City</Label>
                   <Input
-                    required
                     type="text"
-                    name="City"
+                    name="city"
                     placeholder="City"
-                    value={this.state.Address}
+                    value={this.state.city}
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>State</Label>
                   <Input
-                    required
                     type="text"
-                    name="State"
+                    name="state"
                     placeholder="State"
-                    value={this.state.Address}
+                    value={this.state.state}
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Zipcode</Label>
                   <Input
-                    required
-                    type="text"
-                    name="Zipcode"
+                    type="number"
+                    name="zipcode"
                     placeholder="Zipcode"
-                    value={this.state.Address}
+                    value={this.state.zipcode}
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
 
-                {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Last Name</Label>
-                  <Input
-                    type="text"
-                    name="plan_max"
-                    placeholder="Last Name"
-                    value={this.state.plan_max}
-                    onChange={this.changeHandler}
-                  />
-                </Col> */}
                 {/* <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Adhar Image</Label>
                   <Input
@@ -225,9 +206,9 @@ export default class AddAgent extends Component {
                   <Label>Mobile</Label>
                   <Input
                     type="number"
-                    name="plan_deductible"
+                    name="phone"
                     placeholder="Enter Mobile"
-                    value={this.state.plan_deductible}
+                    value={this.state.phone}
                     onChange={this.changeHandler}
                   />
                 </Col>
@@ -242,16 +223,15 @@ export default class AddAgent extends Component {
                     onChange={this.changeHandler}
                   />
                 </Col>
-                {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Password</Label>
+                <Col lg="6" md="6" sm="6" className="mb-2">
+                  <Label>Image</Label>
                   <Input
-                    type="password"
-                    name="password"
-                    placeholder="password"
-                    value={this.state.password}
-                    onChange={this.changeHandler}
+                    type="file"
+                    name="image"
+                    // value={this.state.image}
+                    onChange={this.handleImage}
                   />
-                </Col> */}
+                </Col>
                 {/* <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>DOB</Label>
                   <Input
